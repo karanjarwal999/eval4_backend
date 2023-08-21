@@ -4,7 +4,7 @@ const userModel=require('../schema/resgister')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-userRouter.post('/register', async (req, res)=>{
+userRouter.post('/signup', async (req, res)=>{
     req.body.password= await bcrypt.hash(req.body.password,8)
     const user= await userModel.create(req.body)
     console.log(user)
@@ -22,7 +22,7 @@ userRouter.post('/login', async(req, res)=>{
             res.send({message:'invalid password'})
         }
     }else{
-        res.send({message:'login failed'})
+        res.send({message:'Email not found'})
     }
 })
 

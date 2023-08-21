@@ -3,15 +3,13 @@ const app = express()
 require('dotenv').config()
 const mongoose = require('mongoose')
 const userRouter= require('./router/UresrRouter')
-const PostRouter= require('./router/PostRouter')
+const CURDRoute= require('./router/CURDRoute')
 const Auth= require('./authMiddleware')
 
 app.use(express.json())
-app.get('/', (req, res) => {
-    res.send('welcome!')
-})
+
+app.use('/',CURDRoute)
 app.use('/users',userRouter)
-app.use('/posts',Auth,PostRouter)
 
 app.listen(process.env.PORT,async ()=>{
     console.log(`listening on port ${process.env.PORT}`)
