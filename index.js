@@ -5,11 +5,13 @@ const mongoose = require('mongoose')
 const userRouter= require('./router/UresrRouter')
 const CURDRoute= require('./router/CURDRoute')
 const Auth= require('./authMiddleware')
-
+var cors = require('cors')
+app.use(cors())
 app.use(express.json())
 
 app.use('/',CURDRoute)
 app.use('/users',userRouter)
+
 
 app.listen(process.env.PORT,async ()=>{
     console.log(`listening on port ${process.env.PORT}`)
